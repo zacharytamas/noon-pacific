@@ -2,12 +2,26 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Noon Pacific (Unofficial)</title>
+
+    <link rel="import" href="elements/np-app.html">
+
+    <style media="screen">
+      html,body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+
+    <np-app id="App"></np-app>
+
+    <script type="text/javascript">
+      window.App = document.querySelector('#App');
+    </script>
+
   </body>
 </html>

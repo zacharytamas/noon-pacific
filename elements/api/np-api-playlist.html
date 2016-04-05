@@ -1,0 +1,64 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="np-api-playlist">
+  <template>
+
+    <iron-ajax id="ajax"
+      url="[[_url(number, current)]]"
+      handle-as="json"
+      on-response="_onResponse"></iron-ajax>
+
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    let NP_API_ROOT = 'https://api.colormyx.com/v1/noon-pacific/';
+    let NP_API_PLAYLIST = 'playlists/$number/tracks/?detail=true';
+    let NP_API_PLAYLIST_CURRENT = 'playlists/current/';
+
+    Polymer({
+      is: 'np-api-playlist',
+
+      properties: {
+        number: {
+          type: Number,
+          value: null
+        },
+        current: {
+          type: Boolean,
+          value: false
+        },
+        playlist: {
+          type: Object,
+          readOnly: true,
+          notify: true
+        }
+      },
+
+      _url(number, current) {
+        if (current) {
+          return NP_API_ROOT + NP_API_PLAYLIST_CURRENT;
+        }
+        if (number) {
+          return NP_API_ROOT + NP_API_PLAYLIST.replace('$number', number);
+        }
+      },
+
+      _onResponse(event, request) {
+        console.log(request.response);
+        this._setPlaylist(request.response);
+      },
+
+      fetch() {
+        if (this.$.ajax.url) {
+          this.$.ajax.generateRequest();
+        }
+      }
+
+    });
+  }());
+  </script>
+</dom-module>

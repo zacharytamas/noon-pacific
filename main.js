@@ -17,6 +17,8 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 
+  mainWindow.webContents.openDevTools({detach: true});
+
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
     // Dereference the window object, usually you would store windows
@@ -31,13 +33,7 @@ function createWindow () {
 app.on('ready', createWindow);
 
 // Quit when all windows are closed.
-app.on('window-all-closed', function () {
-  // On OS X it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
+app.on('window-all-closed', app.quit);
 
 app.on('activate', function () {
   // On OS X it's common to re-create a window in the app when the

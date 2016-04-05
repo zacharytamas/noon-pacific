@@ -1,0 +1,48 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../utils/media-keys.html">
+
+<dom-module id="player-bar">
+  <template>
+    <style>
+      :host {
+        display: block;
+        height: 64px;
+        background: rgba(255,255,255,0.95);
+        border-top: 1px solid #EBEBEB;
+      }
+    </style>
+
+    <media-keys
+      on-next-track="next"
+      on-previous-track="previous"
+      on-play-pause="playOrPause"></media-keys>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'player-bar',
+
+      next() {
+        console.log('go next');
+      },
+
+      previous() {
+        console.log('previous');
+      },
+
+      playOrPause() {
+        this.play();
+      },
+
+      play() {
+        console.log('play');
+      },
+
+      pause() {
+        console.log('pause');
+      }
+
+    });
+  </script>
+</dom-module>

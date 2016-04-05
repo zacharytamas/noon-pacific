@@ -1,0 +1,69 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<link rel="import" href="api/np-api-playlist.html">
+
+<link rel="import" href="player/player-bar.html">
+<link rel="import" href="playlists/np-playlist.html">
+
+<dom-module id="np-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+        height: 100%;
+      }
+
+      .main-layout {
+        @apply(--layout-vertical);
+        height: 100%;
+      }
+
+      .main-content {
+        @apply(--layout-flex);
+      }
+
+      .scroller {
+        overflow-y: scroll;
+      }
+
+    </style>
+
+    <np-api-playlist id="latestPlaylist"
+      current on-playlist-changed="_receivedLatestPlaylist"></np-api-playlist>
+
+    <div class="main-layout">
+
+      <div class="scroller main-content">
+        <np-playlist playlist="[[currentPlaylist]]"></np-playlist>
+      </div>
+
+      <player-bar></player-bar>
+
+    </div>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'np-app',
+
+      properties: {
+        currentPlaylist: {
+          type: Object
+        }
+      },
+
+      ready() {
+        this.$.latestPlaylist.fetch();
+      },
+
+      _receivedLatestPlaylist(playlist) {
+        if (!this.currentPlaylist) {
+          this.currentPlaylist = this.$.latestPlaylist.playlist;
+        }
+      }
+
+    });
+  </script>
+</dom-module>
