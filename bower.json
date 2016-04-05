@@ -1,0 +1,28 @@
+{
+  "name": "noon-pacific",
+  "description": "An unofficial desktop app version of http://noonpacific.com built while learning Electron.",
+  "main": "main.js",
+  "authors": [
+    "Zachary Jones <zacharytamas@gmail.com>"
+  ],
+  "license": "CC0-1.0",
+  "keywords": [
+    "electron",
+    "polymer"
+  ],
+  "homepage": "https://github.com/zacharytamas/noon-pacific",
+  "moduleType": [
+    "es6"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "iron-ajax": "PolymerElements/iron-ajax#^1.2.0"
+  }
+}
